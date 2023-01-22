@@ -1,4 +1,4 @@
-import { getSession, signIn, useSession } from 'next-auth/react';
+import {signIn, useSession } from 'next-auth/react';
 import React, { useEffect } from 'react'
 import spotifyApi from '../lib/spotify';
 
@@ -18,10 +18,7 @@ function useSpotify() {
                 }
                 // @ts-ignore
                 spotifyApi.setAccessToken(session.accessToken);
-                // @ts-ignore
-                spotifyApi.getUserPlaylists(session?.user?.username).then(data => {
-
-                })
+             
 
 
 
