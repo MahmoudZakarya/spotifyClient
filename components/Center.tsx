@@ -17,9 +17,10 @@ function Center() {
 
     const {data:session} = useSession();
     // @ts-ignore
-    const playlistId = useRecoilValue(playlistIdState);
-    const [playlist, setPlaylist] = useRecoilState(playlistState);
+    const [playlistId, setPlaylistId] = useRecoilState(playlistIdState);
     const spotifyApi = useSpotify();
+    const [playlist, setPlaylist] = useRecoilState(playlistState);
+    // @ts-ignore
     const [isLoading, setIsLoading] = useState(false) ;
 
 
@@ -32,7 +33,6 @@ function Center() {
 var [color, setColor] = useState<string | undefined>('');
 var [songsColor, setSongsColor] = useState<string | undefined>('');
 
-console.log(songsColor) 
 
 useEffect(()=>{
     var chosenColor = shuffle(colors).pop();
@@ -42,13 +42,37 @@ useEffect(()=>{
 
 useEffect(()=>{
         setIsLoading(true)
-        spotifyApi.getPlaylist(playlistId).then((data)=>{
+
+        // This is on init as to get user's first playlist to display at the center
+        if(!playlistId){
+            // @ts-ignore
+             spotifyApi.getUserPlaylists(session?.user?.username).then(data=>{
+            // @ts-ignore
+                setPlaylistId(data.body?.items?.[0]?.id);
+            // @ts-ignore
+                spotifyApi.getPlaylist(playlistId).then((data)=>{
+            // @ts-ignore
+            setPlaylist(data.body);
+            setIsLoading(false)
+        }).catch((error)=>{
+        }); 
+            })
+
+            
+        }
+        
+        else {
+            spotifyApi.getPlaylist(playlistId).then((data)=>{
             // @ts-ignore
             setPlaylist(data.body);
             setIsLoading(false)
         }).catch((error)=>{
             alert(error.message)
         }); 
+            
+
+        }
+        
 
 
     },[spotifyApi,playlistId,playlistState, playlistIdState] )

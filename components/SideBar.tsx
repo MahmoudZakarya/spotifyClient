@@ -40,6 +40,10 @@ useEffect(() => {
     <div className=" flex-col text-gray-400 p-5 font-semibold text-xs lg:text-sm border-r border-gray-900 overflow-y-scroll sm:w-[12rem] lg:w-[18rem]
     pb-36 scrollbar-hide h-screen hidden md:inline-flex">
         <div className=' flex flex-col space-y-5 '>
+
+            <img src='/Spotify_Logo.png' alt="" className='flex self-start w-15 h-10 object-contain cursor-pointer ' onClick={()=> {
+                window.location.reload();
+            }}  />
             <button className="flex items-center space-x-2 hover:text-white ease-in-out duration-700" 
             onClick={()=>{signOut()}}>
                 <ArrowRightOnRectangleIcon className='h-5 w-5'/>
@@ -79,6 +83,7 @@ useEffect(() => {
                 {playlists.map((playlist)=>{
 
                     return (
+                        // @ts-ignore
                         <div key={playlist.id} onClick={()=> setPlaylistId(playlist.id)} className='flex space-x-2 w-48 overflow-hidden '> 
                             <Avatar src={playlist.images[0].url} size="sm" squared />
                         <h6 className='truncate cursor-pointer font-bold hover:text-white overflow-hidden text-ellipsis text-xs lg:text-sm first-letter:hover:text-clip ease-in-out duration-700'>{playlist.name}</h6>

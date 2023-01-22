@@ -17,12 +17,10 @@ export async function middleware(req: NextRequest) {
   // 1 - The Token Exits
   // 2 - It's A Request for next-auth session and provider fetching
   if (pathname.includes("/api/auth") || token) {
-    console.log("WE ARE HAVING TOKEN");
 
     return NextResponse.next();
   }
   if (!token && pathname != "/login") {
-    console.log("WE DON'T HAVE TOKEN");
 
     return NextResponse.redirect(new URL("/login", req.url));
   }

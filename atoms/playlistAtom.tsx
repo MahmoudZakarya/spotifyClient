@@ -1,12 +1,13 @@
 
-import { atom} from 'recoil';
+import {atom} from 'recoil';
 
 
 
 
 export const playlistIdState = atom({
              key:'playlistIdState',
-             default: `6XRc9yKUsSB3QdQjraO363`
+            //  @ts-ignore
+             default: null
 
                 });
  export const playlistState = atom({
