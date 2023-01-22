@@ -21,4 +21,4 @@
 
 to enter the deployed site follow that link below.
 
-https://MahmoudZakarya.github.io/spotifyClient
+https://spotifyclient.vercel.app/
