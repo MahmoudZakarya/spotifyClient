@@ -1,11 +1,11 @@
 {
-  "homepage": "https://MahmoudZakarya.github.io/spotifyClient",
-  "name": "sptify-client",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "build":"next build && next export",
+    "start": "next start",
+    "predeploy":"npm run build",
+    "deploy":"gh-pages -d build"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.13",

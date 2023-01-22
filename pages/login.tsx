@@ -15,7 +15,7 @@ function Login(providers:any) {
             // @ts-ignore   
             onClick={()=>signIn(provider.id, {callbackUrl:'/'})}
             // @ts-ignore
-            >Login With {provider.name}</button>
+            >Login With {provider?.name}</button>
         </div>
 
       ))}
